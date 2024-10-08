@@ -1,10 +1,11 @@
-import { View, Text } from 'react-native'
+import { View, Text, useColorScheme } from 'react-native'
 import React from 'react'
 
 const Explore = () => {
+  const isDarkMode = useColorScheme() === 'dark';
   return (
     <View>
-      <Text>Explore</Text>
+      <Text style={{color: isDarkMode ? "white" : "black"}}>Explore</Text>
     </View>
   )
 }
