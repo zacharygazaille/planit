@@ -5,7 +5,7 @@ const MyEvents = () => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View>
-      <Text style={{color: isDarkMode ? "white" : "black"}}>My Events</Text>
+      <Text style={{color: isDarkMode ? "#e8e8e8" : "black"}}>My Events</Text>
     </View>
   )
 }
