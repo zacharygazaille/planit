@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native'
 import React from 'react'
 import {Feather} from '@expo/vector-icons';
 
@@ -12,10 +12,13 @@ const TabBar = ({ state, descriptors, navigation }) => {
       my_events: (props)=> <Feather name="calendar" size={26} color={greyColor} {...props} />,
     }
 
+    const isDarkMode = useColorScheme() === 'dark';
+
     const primaryColor = '#0ea2e6';
-    const greyColor = '#737373';
+    const greyColor = isDarkMode ? '#c7c7c7' : '#737373';
+
   return (
-    <View style={styles.tabbar}>
+    <View style={[styles.tabbar, isDarkMode ? styles.tabbarDark : styles.tabbarLight]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -86,7 +89,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
     marginHorizontal: 20,
     paddingVertical: 15,
     borderRadius: 25,
@@ -95,6 +97,12 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 10},
     shadowRadius: 10,
     shadowOpacity: 0.1,
+  },
+  tabbarLight: {
+    backgroundColor: 'white',
+  },
+  tabbarDark: {
+    backgroundColor: '#1c1c1c',
   },
   tabbarItem: {
     flex: 1,
